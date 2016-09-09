@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Регистрация</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      {% csrf_token %}
+      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+      {{ form.as_p }}
+      <button type="submit">Зарегистрироваться</button>
+      <button class='js-captcha-refresh'>Обновить</button>
+    </form>
+
+  <script>
+      $('.js-captcha-refresh').click(function(){
+          $form = $(this).parents('form');
+          $.getJSON($(this).data('url'), {}, function(json) {
+          // This should update your captcha image src and captcha hidden input
+          });
+          return false;
+      });
+  </script>
+  </body>
+</html>

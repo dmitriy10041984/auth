@@ -1,0 +1,33 @@
+{% load i18n %}
+<body>
+<form action="../" method="post">
+    {% csrf_token %}
+
+    {{form.captcha.errors}}
+    {{form.captcha}}
+
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+
+<br />
+
+<form action='.' method='POST'>
+    {% csrf_token %}
+    {{ form }}
+     <input type="submit" />
+     <button class='js-captcha-refresh'></button>
+</form>
+
+<script>
+    $('.js-captcha-refresh').click(function(){
+        $form = $(this).parents('form');
+        $.getJSON($(this).data('url'), {}, function(json) {
+        // This should update your captcha image src and captcha hidden input
+        });
+        return false;
+    });
+</script>
+
+</body>
